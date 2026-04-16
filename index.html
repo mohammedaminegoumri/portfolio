@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammed Amine Goumri — Data Analyst & BI Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #16161f;
+    --surface: #1c1c28;
+    --surface2: #232334;
+    --accent: #6c63ff;
+    --accent2: #a78bfa;
+    --accent3: #38bdf8;
+    --gold: #f59e0b;
+    --text: #f0eeff;
+    --text2: #a09cc2;
+    --text3: #6b6890;
+    --border: rgba(108, 99, 255, 0.15);
+    --border2: rgba(108, 99, 255, 0.3);
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'Syne', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 10px; height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s, opacity 0.2s;
+    transform: translate(-50%, -50%);
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--accent2);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.18s cubic-bezier(.16,1,.3,1), width 0.2s, height 0.2s, opacity 0.2s;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+  }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2rem 4rem;
+    max-width: 1100px; margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 1.0;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--accent2);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text2);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background: transparent;
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    font-family: var(--sans);
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--accent2); color: var(--text); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 0.5px solid var(--border);
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    color: var(--text);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  /* Scrolling ticker */
+  .ticker {
+    overflow: hidden;
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0.75rem 0;
+    background: var(--bg2);
+  }
+  .ticker-inner {
+    display: flex; gap: 3rem;
+    animation: ticker 28s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 1rem;
+    flex-shrink: 0;
+  }
+  .ticker-item::before { content: '◆'; color: var(--accent); font-size: 8px; }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Sections */
+  section { max-width: 1100px; margin: 0 auto; padding: 6rem 2rem; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; max-width: 48px; height: 1px;
+    background: var(--accent);
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    margin-bottom: 3rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .about-text p {
+    font-size: 1.0625rem;
+    color: var(--text2);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+    font-weight: 400;
+  }
+  .about-text strong { color: var(--text); font-weight: 600; }
+
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border2); background: var(--surface2); }
+  .skill-card-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    background: rgba(108,99,255,0.1);
+    color: var(--accent2);
+    border-radius: 2px;
+    border: 0.5px solid rgba(108,99,255,0.2);
+    letter-spacing: 0.04em;
+  }
+
+  /* Experience */
+  .exp-timeline { position: relative; }
+  .exp-timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .exp-item {
+    padding-left: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute; left: -4px; top: 6px;
+    width: 9px; height: 9px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(108,99,255,0.2);
+  }
+
+  .exp-header {
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.4rem;
+  }
+  .exp-role {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .exp-company {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent3);
+    letter-spacing: 0.05em;
+  }
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+    margin-left: auto;
+  }
+  .exp-loc {
+    font-size: 12px;
+    color: var(--text3);
+    margin-bottom: 0.75rem;
+  }
+  .exp-item ul { list-style: none; }
+  .exp-item ul li {
+    font-size: 0.9375rem;
+    color: var(--text2);
+    line-height: 1.75;
+    margin-bottom: 0.4rem;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .exp-item ul li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* Projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    padding: 1.75rem;
+    transition: border-color 0.2s, transform 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent3));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .project-card:hover { border-color: var(--border2); transform: translateY(-4px); background: var(--surface2); }
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .project-name {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 7px;
+    background: rgba(56,189,248,0.08);
+    color: var(--accent3);
+    border-radius: 2px;
+    border: 0.5px solid rgba(56,189,248,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  /* Education */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 600px) { .edu-grid { grid-template-columns: 1fr; } }
+
+  .edu-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    padding: 1.75rem;
+  }
+  .edu-degree {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+  }
+  .edu-school {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent3);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+  }
+  .edu-date {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    margin-bottom: 1rem;
+  }
+  .edu-modules {
+    font-size: 0.8125rem;
+    color: var(--text3);
+    line-height: 1.7;
+  }
+
+  /* Certs */
+  .certs-grid {
+    display: flex; flex-wrap: wrap; gap: 0.75rem;
+  }
+  .cert-pill {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 100px;
+    color: var(--text2);
+    letter-spacing: 0.03em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .cert-pill:hover { border-color: var(--accent); color: var(--text); }
+
+  /* Contact */
+  .contact-inner {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-inner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(108,99,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-inner h2 { margin-bottom: 0.75rem; }
+  .contact-inner p {
+    color: var(--text2);
+    margin-bottom: 2rem;
+    font-size: 1.0625rem;
+  }
+  .contact-links {
+    display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text2);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--accent2); }
+  .contact-link svg { opacity: 0.7; }
+
+  /* Footer */
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+  }
+
+  /* Divider */
+  .divider {
+    width: 100%; height: 0.5px;
+    background: var(--border);
+  }
+
+  /* Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Language badges */
+  .lang-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+  .lang-badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    color: var(--text2);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .lang-level {
+    color: var(--accent);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-logo">MAG · Portfolio</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+  <div class="hero">
+    <div class="hero-eyebrow">Available for opportunities</div>
+    <h1>Mohammed<br><em>Amine</em> Goumri</h1>
+    <p class="hero-sub">Data Analyst & BI Developer transforming complex datasets into actionable insights — specializing in Power BI, Python & Machine Learning.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">Get in touch ↗</a>
+      <a href="#projects" class="btn-ghost">View projects</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">4+</div>
+        <div class="stat-label">BI Dashboards</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Predictive Models</div>
+      </div>
+      <div>
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years in Data</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">AI Projects</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item">Power BI</span>
+    <span class="ticker-item">Python</span>
+    <span class="ticker-item">XGBoost</span>
+    <span class="ticker-item">Azure Synapse</span>
+    <span class="ticker-item">LangChain</span>
+    <span class="ticker-item">Machine Learning</span>
+    <span class="ticker-item">DAX</span>
+    <span class="ticker-item">Databricks</span>
+    <span class="ticker-item">SQL</span>
+    <span class="ticker-item">FastAPI</span>
+    <span class="ticker-item">LSTM</span>
+    <span class="ticker-item">Medallion Architecture</span>
+    <span class="ticker-item">Power BI</span>
+    <span class="ticker-item">Python</span>
+    <span class="ticker-item">XGBoost</span>
+    <span class="ticker-item">Azure Synapse</span>
+    <span class="ticker-item">LangChain</span>
+    <span class="ticker-item">Machine Learning</span>
+    <span class="ticker-item">DAX</span>
+    <span class="ticker-item">Databricks</span>
+    <span class="ticker-item">SQL</span>
+    <span class="ticker-item">FastAPI</span>
+    <span class="ticker-item">LSTM</span>
+    <span class="ticker-item">Medallion Architecture</span>
+  </div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="section-label">About</div>
+  <h2>Data meets<br><em style="font-family:var(--serif);font-style:italic;color:var(--accent2);">decisions</em></h2>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>I'm a <strong>Data Analyst & BI Developer</strong> with a dual background in Data Science and Business Administration. My work sits at the intersection of advanced analytics and real-world strategy.</p>
+      <p>At <strong>Bank Al Maghrib</strong>, I built predictive models for bond yield forecasting using XGBoost, Random Forest, LSTM, and ARDL — with results deployed into executive Power BI dashboards.</p>
+      <p>I believe data's true value lies in the decisions it enables — not just the models it feeds.</p>
+      <div class="lang-grid">
+        <span class="lang-badge">Arabic <span class="lang-level">C2</span></span>
+        <span class="lang-badge">French <span class="lang-level">B2</span></span>
+        <span class="lang-badge">English <span class="lang-level">C1</span></span>
+        <span class="lang-badge">Spanish <span class="lang-level">A1</span></span>
+      </div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">PySpark</span><span class="tag">R</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Reporting</div>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Cloud</div>
+        <div class="skill-tags">
+          <span class="tag">Azure Synapse</span><span class="tag">Databricks</span><span class="tag">BigQuery</span><span class="tag">Fabric</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Architecture</div>
+        <div class="skill-tags">
+          <span class="tag">Data Warehouse</span><span class="tag">Lakehouse</span><span class="tag">Medallion</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">Orchestration</div>
+        <div class="skill-tags">
+          <span class="tag">ADF</span><span class="tag">Airflow</span><span class="tag">Fivetran</span><span class="tag">SSIS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title">CI/CD</div>
+        <div class="skill-tags">
+          <span class="tag">Azure DevOps</span><span class="tag">Terraform</span><span class="tag">Logic Apps</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2>Where I've<br><em style="font-family:var(--serif);font-style:italic;color:var(--accent2);">worked</em></h2>
+  <div class="exp-timeline fade-in">
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-role">Portfolio Manager</span>
+        <span class="exp-company">Fondation Arrawaj</span>
+        <span class="exp-date">01/2026 – 04/2026</span>
+      </div>
+      <div class="exp-loc">El Jadida, Morocco</div>
+      <ul>
+        <li>Managed & monitored a client portfolio by analyzing financial data and repayment behaviors to assess credit risk.</li>
+        <li>Built and updated portfolio performance reports using Excel and internal information systems.</li>
+        <li>Identified repayment trends and anomalies to anticipate risks and improve collection strategies.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-role">Data Scientist — Financial Modeling (Internship)</span>
+        <span class="exp-company">Bank Al Maghrib</span>
+        <span class="exp-date">01/2025 – 06/2025</span>
+      </div>
+      <div class="exp-loc">Rabat, Morocco</div>
+      <ul>
+        <li>Designed and benchmarked 4 predictive models (XGBoost, Random Forest, LSTM, ARDL) for bond yield forecasting on central bank historical data.</li>
+        <li>Developed 4+ Power BI dashboards (DAX, Power Query) for managers and decision-makers, centralizing real-time portfolio KPIs.</li>
+        <li>Conducted deep exploratory analyses and financial risk simulations on macroeconomic data, producing investment strategy insights.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-role">BI Developer (Freelance)</span>
+        <span class="exp-company">Intellection Center</span>
+        <span class="exp-date">06/2024</span>
+      </div>
+      <div class="exp-loc">El Jadida, Morocco</div>
+      <ul>
+        <li>Designed Power BI dashboards for academic tracking and decision-making.</li>
+        <li>Automated SQL data pipelines to optimize internal reporting.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2>Personal AI<br><em style="font-family:var(--serif);font-style:italic;color:var(--accent2);">projects</em></h2>
+  <div class="projects-grid fade-in">
+
+    <div class="project-card">
+      <div class="project-icon">📊</div>
+      <div class="project-name">FinSight AI</div>
+      <div class="project-desc">Financial analysis agent that generates automated investment reports powered by LLMs.</div>
+      <div class="project-stack">
+        <span class="stack-tag">LangChain</span>
+        <span class="stack-tag">OpenAI API</span>
+        <span class="stack-tag">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🔄</div>
+      <div class="project-name">Customer Churn Agentic AI</div>
+      <div class="project-desc">End-to-end ML + LLM pipeline for customer churn prediction and explainability.</div>
+      <div class="project-stack">
+        <span class="stack-tag">XGBoost</span>
+        <span class="stack-tag">FastAPI</span>
+        <span class="stack-tag">LangChain</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">📄</div>
+      <div class="project-name">ResumeForge AI</div>
+      <div class="project-desc">LLM-powered CV generation app deployed in production with Vercel.</div>
+      <div class="project-stack">
+        <span class="stack-tag">Anthropic API</span>
+        <span class="stack-tag">Streamlit</span>
+        <span class="stack-tag">Vercel</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">⚙️</div>
+      <div class="project-name">DataOps AI (v1 & v2)</div>
+      <div class="project-desc">Intelligent DataOps platform for automated data quality and pipeline monitoring.</div>
+      <div class="project-stack">
+        <span class="stack-tag">LangChain</span>
+        <span class="stack-tag">FastAPI</span>
+      </div>
+    </div>
+
+  </div>
+  <div style="margin-top:2rem; text-align:center;">
+    <a href="https://github.com/mohammedaminegoumri" target="_blank" class="btn-ghost">View all on GitHub ↗</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Education -->
+<section id="education">
+  <div class="section-label">Education</div>
+  <h2>Academic<br><em style="font-family:var(--serif);font-style:italic;color:var(--accent2);">background</em></h2>
+  <div class="edu-grid fade-in">
+    <div class="edu-card">
+      <div class="edu-degree">MSc Data Science & Business Analytics</div>
+      <div class="edu-school">Université Internationale de Rabat</div>
+      <div class="edu-date">2023 – 2025 · Rabat, MA</div>
+      <div class="edu-modules">Python · Data Modeling · Data Warehousing · Advanced Statistics · Machine Learning · Data Visualisation · Data Governance</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-degree">Bachelor in Business Administration</div>
+      <div class="edu-school">FSJES El Jadida</div>
+      <div class="edu-date">2021 – 2023 · El Jadida, MA</div>
+      <div class="edu-modules">Business Management · Market Finance · Management Accounting · Business Law · Management</div>
+    </div>
+  </div>
+
+  <div style="margin-top:3rem;">
+    <div class="section-label" style="margin-bottom:1.25rem;">Certifications</div>
+    <div class="certs-grid fade-in">
+      <span class="cert-pill">Machine Learning (Supervised & Unsupervised)</span>
+      <span class="cert-pill">Python for Data Science — IBM</span>
+      <span class="cert-pill">Jira for Project Management</span>
+      <span class="cert-pill">Tableau — CognitiveClass</span>
+      <span class="cert-pill">SQL for Relational Databases — Coursera</span>
+      <span class="cert-pill">Excel — Microsoft Office</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-inner fade-in">
+    <div class="section-label" style="justify-content:center;">Contact</div>
+    <h2>Let's build<br><em style="font-family:var(--serif);font-style:italic;color:var(--accent2);">something</em></h2>
+    <p>Open to data analyst, BI developer, and data science roles.</p>
+    <div class="contact-links">
+      <a href="mailto:mohammedaminegoumri@proton.me" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        mohammedaminegoumri@proton.me
+      </a>
+      <a href="tel:+212602369260" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.06 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +212 602 369 260
+      </a>
+      <a href="https://linkedin.com/in/mohammedaminegoumri" target="_blank" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/mohammedaminegoumri
+      </a>
+      <a href="https://github.com/mohammedaminegoumri" target="_blank" class="contact-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        github.com/mohammedaminegoumri
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Mohammed Amine Goumri · Built with craft & code · El Jadida, Morocco
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+  function animRing() {
+    rx += (mx - rx) * 0.14;
+    ry += (my - ry) * 0.14;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+  document.querySelectorAll('a, button, .skill-card, .project-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; ring.style.opacity = '0.8'; });
+    el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.opacity = '0.5'; });
+  });
+
+  // Scroll fade-in
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
