@@ -1,0 +1,52 @@
+[
+  {
+    "id": "retail-profit",
+    "cat": "BI & Analytics",
+    "filter": "bi",
+    "title": "Retail category profit vs orders",
+    "desc": "Decision page on which categories drive profit and which only drive orders. Technology is 26% of orders and 58% of profit. Tables and Bookcases lose money.",
+    "long": "Public Superstore order lines, 2009-2012, 8,399 lines and 5,496 orders. SQL decision query, Python check, and one Power BI page. Sales 14,915,601, profit 1,521,768, margin 10.20%. Technology is 26% of orders and 58% of profit. Furniture is 35% of sales and 8% of profit. Tables lose about 99,063. Bookcases lose about 33,582. Office Supplies is the order engine; binders carry the profit.",
+    "tags": ["SQL", "Power BI", "Python"],
+    "url": "https://github.com/mohammedaminegoumri/retail-category-profit"
+  },
+  {
+    "id": "finsight",
+    "cat": "AI & Agents",
+    "filter": "ai",
+    "title": "FinSight AI",
+    "desc": "Financial-analysis agent that auto-generates investment reports from structured market data, with a RAG architecture pulling in external financial sources.",
+    "long": "Financial-analysis agent that auto-generates investment reports from structured market data. Uses a RAG architecture that pulls in external financial sources and produces a full report in under 30 seconds.",
+    "tags": ["RAG", "LangChain", "Python"],
+    "url": "https://github.com/mohammedaminegoumri"
+  },
+  {
+    "id": "churn",
+    "cat": "AI & Agents",
+    "filter": "ai",
+    "title": "Customer Churn Agentic AI",
+    "desc": "End-to-end ML + LLM pipeline for predicting and explaining customer churn, pairing a gradient-boosted model with an LLM explanation layer.",
+    "long": "End-to-end ML + LLM pipeline for predicting and explaining customer churn. An XGBoost model handles prediction while an LLM layer, served through FastAPI, generates human-readable explanations.",
+    "tags": ["XGBoost", "FastAPI", "LangChain"],
+    "url": "https://github.com/mohammedaminegoumri"
+  },
+  {
+    "id": "resumeforge",
+    "cat": "Web App",
+    "filter": "web",
+    "title": "ResumeForge AI",
+    "desc": "Web app that generates ATS-optimized resumes from a user profile in under a minute. Deployed and publicly accessible.",
+    "long": "Web app that generates ATS-optimized resumes from a user profile in under a minute. Deployed and publicly accessible, built on the Anthropic API with a Streamlit front end.",
+    "tags": ["Anthropic API", "Streamlit", "Vercel"],
+    "url": "https://github.com/mohammedaminegoumri"
+  },
+  {
+    "id": "dataops",
+    "cat": "Data Engineering",
+    "filter": "data",
+    "title": "DataOps AI (v1 & v2)",
+    "desc": "Intelligent DataOps platform automating data quality checks and monitoring, now in its second iteration.",
+    "long": "Intelligent DataOps platform automating data quality checks and monitoring, now in its second iteration with improved rule coverage and reporting.",
+    "tags": ["LangChain", "FastAPI"],
+    "url": "https://github.com/mohammedaminegoumri"
+  }
+]
