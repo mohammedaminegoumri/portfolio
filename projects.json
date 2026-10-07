@@ -1,5 +1,20 @@
 [
   {
+    "id": "churn-save",
+    "cat": "BI & Analytics",
+    "filter": "bi",
+    "title": "Customer retention: who to save",
+    "desc": "Power BI retention page on who to call this month. At risk is 16% of customers and churns at 44%, while Loyal is 35% of revenue and churns at 4.9%.",
+    "long": "Synthetic subscription data, 3,200 customers, signups Jul 2024–Jun 2025. Typed CSV load, DAX measures for customers, churn rate, revenue, average tickets and segment shares, and one light-themed Power BI page: KPI cards, churn rate by segment, churn share vs customer share, and a segment table sorted by churn rate, with channel, plan and signup-year slicers. Overall churn is 18%. Paid churns at 21.8% and Referral at 10.7%. Recommendation: call At risk customers with 2 or more tickets, do not discount Loyal, and cut Paid prospecting until the first months are fixed. The file cannot tell voluntary churn from failed payment.",
+    "tags": [
+      "Power BI",
+      "DAX",
+      "Retention"
+    ],
+    "url": "https://github.com/mohammedaminegoumri/customer-churn-save",
+    "image": "https://raw.githubusercontent.com/mohammedaminegoumri/customer-churn-save/main/screenshot.png"
+  },
+  {
     "id": "marketing-roi",
     "cat": "BI & Analytics",
     "filter": "bi",
